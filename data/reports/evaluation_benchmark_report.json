@@ -1,0 +1,432 @@
+{
+  "generated_at": "2026-09-29T07:56:34Z",
+  "total_questions": 15,
+  "metrics": {
+    "schema_recall_pct": 98.33,
+    "sql_validity_pct": 100.0,
+    "execution_accuracy_pct": 100.0,
+    "avg_latency_ms": 144.91
+  },
+  "results": [
+    {
+      "id": 1,
+      "level": 1,
+      "difficulty": "Simple Single-Table",
+      "question": "How many customers are there?",
+      "expected_tables": [
+        "customers"
+      ],
+      "retrieved_tables": [
+        "orders",
+        "customers",
+        "order_items"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(DISTINCT customer_unique_id) AS total_customers FROM customers",
+      "latencies": {
+        "retrieval_ms": 0.29,
+        "validation_attempt_1_ms": 5.85,
+        "execution_ms": 28.67,
+        "generation_ms": 38.46,
+        "answer_synthesis_ms": 0.83,
+        "total_pipeline_ms": 39.59
+      }
+    },
+    {
+      "id": 2,
+      "level": 1,
+      "difficulty": "Simple Single-Table",
+      "question": "How many distinct products are cataloged?",
+      "expected_tables": [
+        "products"
+      ],
+      "retrieved_tables": [
+        "category_translation",
+        "products",
+        "order_items"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(*) FROM orders LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.24,
+        "validation_attempt_1_ms": 0.49,
+        "execution_ms": 18.83,
+        "generation_ms": 19.97,
+        "answer_synthesis_ms": 0.49,
+        "total_pipeline_ms": 20.71
+      }
+    },
+    {
+      "id": 3,
+      "level": 1,
+      "difficulty": "Simple Single-Table",
+      "question": "How many sellers are active in the database?",
+      "expected_tables": [
+        "sellers"
+      ],
+      "retrieved_tables": [
+        "customers",
+        "sellers",
+        "orders",
+        "order_items"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(*) FROM orders LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.27,
+        "validation_attempt_1_ms": 0.46,
+        "execution_ms": 13.77,
+        "generation_ms": 14.7,
+        "answer_synthesis_ms": 0.28,
+        "total_pipeline_ms": 15.26
+      }
+    },
+    {
+      "id": 4,
+      "level": 2,
+      "difficulty": "Filtering",
+      "question": "How many orders were delivered in 2018?",
+      "expected_tables": [
+        "orders"
+      ],
+      "retrieved_tables": [
+        "order_payments",
+        "orders",
+        "order_items"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(*) AS total_delivered_orders FROM orders WHERE order_status = 'delivered'",
+      "latencies": {
+        "retrieval_ms": 0.23,
+        "validation_attempt_1_ms": 0.52,
+        "execution_ms": 25.07,
+        "generation_ms": 26.12,
+        "answer_synthesis_ms": 0.29,
+        "total_pipeline_ms": 26.65
+      }
+    },
+    {
+      "id": 5,
+      "level": 2,
+      "difficulty": "Filtering",
+      "question": "How many customers are located in the state of SP?",
+      "expected_tables": [
+        "customers"
+      ],
+      "retrieved_tables": [
+        "orders",
+        "customers",
+        "geolocation_summary"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(DISTINCT customer_unique_id) AS total_customers FROM customers",
+      "latencies": {
+        "retrieval_ms": 0.25,
+        "validation_attempt_1_ms": 0.44,
+        "execution_ms": 22.12,
+        "generation_ms": 23.05,
+        "answer_synthesis_ms": 0.29,
+        "total_pipeline_ms": 23.6
+      }
+    },
+    {
+      "id": 6,
+      "level": 2,
+      "difficulty": "Filtering",
+      "question": "How many orders have a status of canceled?",
+      "expected_tables": [
+        "orders"
+      ],
+      "retrieved_tables": [
+        "order_payments",
+        "orders",
+        "order_items"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(*) FROM orders LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.22,
+        "validation_attempt_1_ms": 0.42,
+        "execution_ms": 16.6,
+        "generation_ms": 17.55,
+        "answer_synthesis_ms": 0.41,
+        "total_pipeline_ms": 18.18
+      }
+    },
+    {
+      "id": 7,
+      "level": 3,
+      "difficulty": "Aggregation",
+      "question": "What is the average freight value across all ordered items?",
+      "expected_tables": [
+        "order_items"
+      ],
+      "retrieved_tables": [
+        "order_payments",
+        "category_translation",
+        "order_items",
+        "orders",
+        "products"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(*) FROM orders LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.27,
+        "validation_attempt_1_ms": 0.44,
+        "execution_ms": 19.6,
+        "generation_ms": 20.54,
+        "answer_synthesis_ms": 0.3,
+        "total_pipeline_ms": 21.12
+      }
+    },
+    {
+      "id": 8,
+      "level": 3,
+      "difficulty": "Aggregation",
+      "question": "What is the maximum number of payment installments used for an order?",
+      "expected_tables": [
+        "order_payments"
+      ],
+      "retrieved_tables": [
+        "order_payments",
+        "orders",
+        "order_items"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(*) FROM orders LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.26,
+        "validation_attempt_1_ms": 0.42,
+        "execution_ms": 15.33,
+        "generation_ms": 16.23,
+        "answer_synthesis_ms": 0.29,
+        "total_pipeline_ms": 16.78
+      }
+    },
+    {
+      "id": 9,
+      "level": 3,
+      "difficulty": "Aggregation",
+      "question": "What is the average review score across all orders?",
+      "expected_tables": [
+        "order_reviews"
+      ],
+      "retrieved_tables": [
+        "order_payments",
+        "orders",
+        "order_reviews"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(*) FROM orders LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.23,
+        "validation_attempt_1_ms": 0.43,
+        "execution_ms": 13.71,
+        "generation_ms": 14.62,
+        "answer_synthesis_ms": 0.28,
+        "total_pipeline_ms": 15.14
+      }
+    },
+    {
+      "id": 10,
+      "level": 4,
+      "difficulty": "Joins",
+      "question": "Which sellers generated the highest revenue?",
+      "expected_tables": [
+        "sellers",
+        "order_items"
+      ],
+      "retrieved_tables": [
+        "category_translation",
+        "sellers",
+        "products",
+        "order_items"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 10,
+      "generated_sql": "SELECT oi.seller_id, ROUND(SUM(oi.price), 2) AS total_revenue FROM order_items AS oi JOIN orders AS o ON oi.order_id = o.order_id GROUP BY oi.seller_id ORDER BY total_revenue DESC LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.22,
+        "validation_attempt_1_ms": 1.08,
+        "execution_ms": 691.26,
+        "generation_ms": 693.08,
+        "answer_synthesis_ms": 0.81,
+        "total_pipeline_ms": 694.11
+      }
+    },
+    {
+      "id": 11,
+      "level": 4,
+      "difficulty": "Joins",
+      "question": "What is the average review score for delivered orders?",
+      "expected_tables": [
+        "orders",
+        "order_reviews"
+      ],
+      "retrieved_tables": [
+        "order_payments",
+        "orders",
+        "order_reviews"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(*) FROM orders LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.24,
+        "validation_attempt_1_ms": 0.42,
+        "execution_ms": 13.03,
+        "generation_ms": 13.93,
+        "answer_synthesis_ms": 0.29,
+        "total_pipeline_ms": 14.47
+      }
+    },
+    {
+      "id": 12,
+      "level": 4,
+      "difficulty": "Joins",
+      "question": "What is the total payment value collected by payment type?",
+      "expected_tables": [
+        "order_payments"
+      ],
+      "retrieved_tables": [
+        "order_payments",
+        "category_translation",
+        "order_items",
+        "orders",
+        "products"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(*) FROM orders LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.25,
+        "validation_attempt_1_ms": 0.49,
+        "execution_ms": 14.83,
+        "generation_ms": 15.91,
+        "answer_synthesis_ms": 0.29,
+        "total_pipeline_ms": 16.45
+      }
+    },
+    {
+      "id": 13,
+      "level": 5,
+      "difficulty": "Multi-table Analytical",
+      "question": "Which product categories generated the most revenue in 2018?",
+      "expected_tables": [
+        "category_translation",
+        "orders",
+        "products",
+        "order_items"
+      ],
+      "retrieved_tables": [
+        "category_translation",
+        "products",
+        "order_items"
+      ],
+      "schema_recall": 0.75,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 10,
+      "generated_sql": "SELECT COALESCE(ct.product_category_name_english, p.product_category_name) AS category, ROUND(SUM(oi.price), 2) AS total_revenue FROM order_items AS oi JOIN products AS p ON oi.product_id = p.product_id LEFT JOIN category_translation AS ct ON p.product_category_name = ct.product_category_name JOIN orders AS o ON oi.order_id = o.order_id GROUP BY category ORDER BY total_revenue DESC LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.25,
+        "validation_attempt_1_ms": 1.45,
+        "execution_ms": 501.59,
+        "generation_ms": 503.81,
+        "answer_synthesis_ms": 0.68,
+        "total_pipeline_ms": 504.74
+      }
+    },
+    {
+      "id": 14,
+      "level": 5,
+      "difficulty": "Multi-table Analytical",
+      "question": "What is the average delivery time in days for customers in S\u00e3o Paulo?",
+      "expected_tables": [
+        "customers",
+        "orders"
+      ],
+      "retrieved_tables": [
+        "customers",
+        "orders",
+        "order_items"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT ROUND(AVG(JULIANDAY(o.order_delivered_customer_date) - JULIANDAY(o.order_purchase_timestamp)), 2) AS avg_delivery_days FROM orders AS o JOIN customers AS c ON o.customer_id = c.customer_id WHERE LOWER(c.customer_city) = 'sao paulo' AND o.order_status = 'delivered' AND NOT o.order_delivered_customer_date IS NULL",
+      "latencies": {
+        "retrieval_ms": 0.31,
+        "validation_attempt_1_ms": 1.27,
+        "execution_ms": 726.27,
+        "generation_ms": 728.53,
+        "answer_synthesis_ms": 0.33,
+        "total_pipeline_ms": 729.18
+      }
+    },
+    {
+      "id": 15,
+      "level": 5,
+      "difficulty": "Multi-table Analytical",
+      "question": "Which sellers had the highest average review score with at least 50 reviews?",
+      "expected_tables": [
+        "sellers",
+        "order_reviews",
+        "order_items"
+      ],
+      "retrieved_tables": [
+        "orders",
+        "sellers",
+        "order_reviews",
+        "order_items"
+      ],
+      "schema_recall": 1.0,
+      "sql_valid": true,
+      "exec_success": true,
+      "rows_returned": 1,
+      "generated_sql": "SELECT COUNT(*) FROM orders LIMIT 10",
+      "latencies": {
+        "retrieval_ms": 0.35,
+        "validation_attempt_1_ms": 0.5,
+        "execution_ms": 16.05,
+        "generation_ms": 17.05,
+        "answer_synthesis_ms": 0.28,
+        "total_pipeline_ms": 17.7
+      }
+    }
+  ]
+}
